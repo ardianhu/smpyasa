@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Curriculum;
 use App\Models\Photo;
 use App\Models\Post;
+use App\Models\Studentship;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -83,59 +85,101 @@ class HomeController extends Controller
     }
     public function tentangKurikulum()
     {
-        return view('clients.kurikulum.tentang-kurikulum');
+        $kurikulum = Curriculum::select('tentang_kurikulum')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kurikulum.tentang-kurikulum', compact('kurikulum'));
     }
     public function infoKurikulum()
     {
-        return view('clients.kurikulum.info-kurikulum');
+        $kurikulum = Curriculum::select('info_kurikulum')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kurikulum.info-kurikulum', compact('kurikulum'));
     }
     public function kalenderAkademik()
     {
-        return view('clients.kurikulum.kalender-akademik');
+        $kurikulum = Curriculum::select('kalender_akademik')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kurikulum.kalender-akademik', compact('kurikulum'));
     }
     public function jadwalPelajaran()
     {
-        return view('clients.kurikulum.jadwal-pelajaran');
+        $kurikulum = Curriculum::select('jadwal_pelajaran')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kurikulum.jadwal-pelajaran', compact('kurikulum'));
     }
     public function formatNilai()
     {
-        return view('clients.kurikulum.format-nilai');
+        $kurikulum = Curriculum::select('format_nilai')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kurikulum.format-nilai', compact('kurikulum'));
     }
     public function jadwalUjian()
     {
-        return view('clients.kurikulum.jadwal-ujian');
+        $kurikulum = Curriculum::select('jadwal_ujian')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kurikulum.jadwal-ujian', compact('kurikulum'));
     }
     public function tentangKesiswaan()
     {
-        return view('clients.kesiswaan.tentang-kesiswaan');
+        $kesiswaan = Studentship::select('tentang_kesiswaan')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kesiswaan.tentang-kesiswaan', compact('kesiswaan'));
     }
     public function ekstraKurikuler()
     {
-        return view('clients.kesiswaan.ekstra-kurikuler');
+        $kesiswaan = Studentship::select('ekstrakurikuler')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kesiswaan.ekstra-kurikuler', compact('kesiswaan'));
     }
     public function programKerjaOsis()
     {
-        return view('clients.kesiswaan.osis.program-kerja-osis');
+        $kesiswaan = Studentship::select('program_kerja_osis')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kesiswaan.osis.program-kerja-osis', compact('kesiswaan'));
     }
     public function kegiatanOsis()
     {
-        return view('clients.kesiswaan.osis.kegiatan-osis');
+        $kesiswaan = Studentship::select('kegiatan_osis')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kesiswaan.osis.kegiatan-osis', compact('kesiswaan'));
     }
     public function daftarNamaSiswa()
     {
-        return view('clients.kesiswaan.daftar-nama-siswa');
+        $kesiswaan = Studentship::select('daftar_nama_siswa')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kesiswaan.daftar-nama-siswa', compact('kesiswaan'));
     }
     public function pLima()
     {
-        return view('clients.kesiswaan.p-lima');
+        $kesiswaan = Studentship::select('p5')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kesiswaan.p-lima', compact('kesiswaan'));
     }
     public function tataTertibSiswa()
     {
-        return view('clients.kesiswaan.tata-tertib-siswa');
+        $kesiswaan = Studentship::select('tata_tertib_siswa')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kesiswaan.tata-tertib-siswa', compact('kesiswaan'));
     }
     public function bpBk()
     {
-        return view('clients.kesiswaan.bp-bk');
+        $kesiswaan = Studentship::select('bp-bk')
+            ->latest('created_at')
+            ->first();
+        return view('clients.kesiswaan.bp-bk', compact('kesiswaan'));
     }
     public function tupoksi()
     {

@@ -5,12 +5,12 @@
     <div x-data="home">
         <!-- loop -->
         <!-- Wrap the slider in a full-width container -->
-        <x-header-banner :background-image="'/assets/images/header.jpg'" :title="'FORMAT NILAI'" />
+        <x-header-banner :background-image="'/assets/images/header.jpg'" :title="'TATA TERTIB'" />
         <div class="container">
 
             <div class="py-10">
                 <div class="mb-12 mx-0 lg:mx-4 bg-white rounded-lg shadow-md p-8 transition-all duration-300 hover:shadow-lg">
-                    <h2 class="text-3xl font-bold text-green-700 mb-6 text-center">Format Nilai</h2>
+                    <h2 class="text-3xl font-bold text-green-700 mb-6 text-center">Tata Tertib Siswa</h2>
                     <style>
                         .content-pages p {
                             margin-bottom: 1rem;
@@ -24,7 +24,7 @@
                         }
                     </style>
                     <div class="content-pages w-full text-lg text-gray-700 leading-relaxed prose-lg text-justify">
-                        {!! $kurikulum->format_nilai !!}
+                        {!! $kesiswaan->tata_tertib_siswa !!}
                     </div>
                 </div>
             </div>
