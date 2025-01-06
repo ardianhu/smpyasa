@@ -24,7 +24,8 @@
                             <th>Featured</th>
                             <th>Kategori</th>
                             <th>Penulis</th>
-                            <th>banner</th>
+                            <th>Gambar</th>
+                            <th>Tag</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +40,11 @@
                             <td>{{ $post->user->name }}</td>
                             <td>
                                 <img src="{{ asset('storage/' . $post->banner) }}" class="h-8" alt="">
+                            </td>
+                            <td>
+                                @foreach ($post->tags as $tag)
+                                {{ $tag->name }}{{ !$loop->last ? ', ' : '' }}
+                                @endforeach
                             </td>
                         </tr>
                         @endforeach

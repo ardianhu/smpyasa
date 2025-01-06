@@ -53,7 +53,7 @@
                     <div class="sm:ltr:mr-auto sm:rtl:ml-auto" x-data="{ search: false }" @click.outside="search = false">
                         <form class="sm:relative absolute inset-x-0 sm:top-0 top-1/2 sm:translate-y-0 -translate-y-1/2 sm:mx-0 mx-4 z-10 sm:block hidden" :class="{ '!block': search }" @submit.prevent="search = false">
                             <div class="relative">
-                                <input type="text" class="form-input ltr:pl-9 rtl:pr-9 ltr:sm:pr-4 rtl:sm:pl-4 ltr:pr-9 rtl:pl-9 peer sm:bg-transparent bg-gray-100 placeholder:tracking-widest" placeholder="Search..." />
+                                <input type="text" class="form-input ltr:pl-9 rtl:pr-9 ltr:sm:pr-4 rtl:sm:pl-4 ltr:pr-9 rtl:pl-9 peer sm:bg-transparent bg-gray-100 placeholder:tracking-widest" placeholder="Cari..." />
                                 <button type="button" class="absolute w-9 h-9 inset-0 ltr:right-auto rtl:left-auto appearance-none peer-focus:text-primary">
                                     <svg class="mx-auto" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="11.5" cy="11.5" r="9.5" stroke="currentColor" stroke-width="1.5" opacity="0.5" />
@@ -80,20 +80,24 @@
                     <!-- link -->
                     @if($authUser == null)
                     <div class="flex items-center justify-center space-x-2">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" fill="currentColor" />
-                            </svg>
-                        </span>
-                        <a href="" target="_blank" class="underline">operator@smp.yasa</a>
+                        <a href="mailto:operator@smp.yasa" target="_blank" class="flex items-center space-x-2 hover:text-green-700">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <span class="hidden md:inline underline">operator@smp.yasa</span>
+                        </a>
                     </div>
                     <div class="flex items-center justify-center space-x-2">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" fill="currentColor" />
-                            </svg>
-                        </span>
-                        <a href="https://wa.me/6287730388573" target="_blank" class="underline">+62 87730388573</a>
+                        <a href="https://wa.me/6287730388573" target="_blank" class="flex items-center space-x-2 hover:text-green-700">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                                </svg>
+                            </span>
+                            <span class="hidden md:inline underline">+62 87730388573</span>
+                        </a>
                     </div>
                     @else
                     <!-- dark theme -->
@@ -276,13 +280,21 @@
                     <!-- User -->
                     <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
                         <a href="javascript:;" class="relative group" @click="toggle()">
+                            @if($authUser->avatar)
+                            <span><img class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100" src="{{ asset('storage/' . $authUser->avatar) }}" alt="image" /></span>
+                            @else
                             <span><img class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100" src="/assets/images/user-profile.jpeg" alt="image" /></span>
+                            @endif
                         </a>
                         <ul x-cloak x-show="open" x-transition x-transition.duration.300ms class="ltr:right-0 rtl:left-0 text-dark dark:text-white-dark top-11 !py-0 w-[230px] font-semibold dark:text-white-light/90">
                             <li>
                                 <div class="flex items-center px-4 py-4">
                                     <div class="flex-none">
+                                        @if($authUser->avatar)
+                                        <img class="rounded-md w-10 h-10 object-cover" src="{{ asset('storage/' . $authUser->avatar) }}" alt="image" />
+                                        @else
                                         <img class="rounded-md w-10 h-10 object-cover" src="/assets/images/user-profile.jpeg" alt="image" />
+                                        @endif
                                     </div>
                                     <div class="ltr:pl-4 rtl:pr-4">
                                         <h4 class="text-base">{{ $authUser->name }}<span class="text-xs bg-success-light rounded text-success px-1 ltr:ml-2 rtl:ml-2">{{ $authUser->role->name }}</span>
@@ -368,7 +380,7 @@
                     <li class="menu nav-item relative">
                         <a href="javascript:;" class="nav-link">
                             <div class="flex items-center">
-                                <span class="px-1">Profile</span>
+                                <span class="px-1">Profil</span>
                             </div>
                             <div class="right_arrow">
                                 <svg class="w-4 h-4 rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -378,13 +390,13 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="/apps/chat">Visi Misi & Tujuann</a>
+                                <a href="/visi-misi">Visi Misi & Tujuan</a>
                             </li>
                             <li>
-                                <a href="/apps/mailbox">Struktur Organisasi</a>
+                                <a href="/struktur-organisasi">Struktur Organisasi</a>
                             </li>
                             <li>
-                                <a href="/apps/todolist">Komite Sekolah</a>
+                                <a href="/komite-sekolah">Komite Sekolah</a>
                             </li>
                         </ul>
                     </li>
@@ -401,10 +413,10 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="/components/tabs">Guru & Tenaga Kependidikan</a>
+                                <a href="/guru-dan-tenaga-kependidikan">Guru & Tenaga Kependidikan</a>
                             </li>
                             <li>
-                                <a href="/components/accordions">Peserta Didik</a>
+                                <a href="/peserta-didik">Peserta Didik</a>
                             </li>
                         </ul>
                     </li>
@@ -421,22 +433,22 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="/elements/alerts">Tentang Kurikulum</a>
+                                <a href="/tentang-kurikulum">Tentang Kurikulum</a>
                             </li>
                             <li>
-                                <a href="/elements/avatar">Info Kurikulum</a>
+                                <a href="/info-kurikulum">Info Kurikulum</a>
                             </li>
                             <li>
-                                <a href="/elements/badges">Kalender Akademik</a>
+                                <a href="/kalender-akademik">Kalender Akademik</a>
                             </li>
                             <li>
-                                <a href="/elements/breadcrumbs">Jadwal Pelajaran</a>
+                                <a href="/jadwal-pelajaran">Jadwal Pelajaran</a>
                             </li>
                             <li>
-                                <a href="/elements/buttons">Format Nilai</a>
+                                <a href="/format-nilai">Format Nilai</a>
                             </li>
                             <li>
-                                <a href="/elements/buttons-group">Jadwal Ujian</a>
+                                <a href="/jadwal-ujian">Jadwal Ujian</a>
                             </li>
                         </ul>
                     </li>
@@ -453,10 +465,10 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="/elements/alerts">Tentang Kesiswaan</a>
+                                <a href="/tentang-kesiswaan">Tentang Kesiswaan</a>
                             </li>
                             <li>
-                                <a href="/elements/avatar">Ekstra Kurikuler</a>
+                                <a href="/ekstra-kurikuler">Ekstra Kurikuler</a>
                             </li>
                             <li class="relative">
                                 <a href="javascript:;">OSIS
@@ -468,24 +480,24 @@
                                 </a>
                                 <ul class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden">
                                     <li>
-                                        <a href="/datatables/basic">Program Kerja Osis</a>
+                                        <a href="/program-kerja-osis">Program Kerja Osis</a>
                                     </li>
                                     <li>
-                                        <a href="/datatables/advanced">Kegiatan Osis</a>
+                                        <a href="/kegiatan-osis">Kegiatan Osis</a>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="/elements/badges">Daftar Nama Siswa</a>
+                                <a href="/daftar-nama-siswa">Daftar Nama Siswa</a>
                             </li>
                             <li>
-                                <a href="/elements/breadcrumbs">P5</a>
+                                <a href="/p-lima">P5</a>
                             </li>
                             <li>
-                                <a href="/elements/buttons">Tata Tertib Siswa</a>
+                                <a href="/tata-tertib-siswa">Tata Tertib Siswa</a>
                             </li>
                             <li>
-                                <a href="/elements/buttons-group">BP / BK</a>
+                                <a href="/bp-bk">BP / BK</a>
                             </li>
                         </ul>
                     </li>
@@ -502,19 +514,19 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="/elements/alerts">Tupoksi</a>
+                                <a href="/tupoksi-sarana-prasarana">Tupoksi</a>
                             </li>
                             <li>
-                                <a href="/elements/avatar">Ruang Kasek</a>
+                                <a href="/ruang-kasek">Ruang Kasek</a>
                             </li>
                             <li>
-                                <a href="/elements/badges">Ruang Guru</a>
+                                <a href="/ruang-guru">Ruang Guru</a>
                             </li>
                             <li>
-                                <a href="/elements/breadcrumbs">Aula</a>
+                                <a href="/aula">Aula</a>
                             </li>
                             <li>
-                                <a href="/elements/buttons">Perpustakaan</a>
+                                <a href="/perpustakaan">Perpustakaan</a>
                             </li>
                         </ul>
                     </li>
@@ -531,10 +543,33 @@
                         </a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="/elements/alerts">Tupoksi</a>
+                                <a href="/tupoksi-humas">Tupoksi</a>
                             </li>
                             <li>
-                                <a href="/elements/avatar">Info Humas</a>
+                                <a href="/info-humas">Info Humas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu nav-item relative">
+                        <a href="javascript:;" class="nav-link">
+                            <div class="flex items-center">
+                                <span class="px-1">Lainnya</span>
+                            </div>
+                            <div class="right_arrow">
+                                <svg class="w-4 h-4 rotate-90" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 5L15 12L9 19" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="/galeri">Galeri</a>
+                            </li>
+                            <li>
+                                <a href="/hubungi-kami">Hubungi Kami</a>
+                            </li>
+                            <li>
+                                <a href="/prestasi">Prestasi</a>
                             </li>
                         </ul>
                     </li>

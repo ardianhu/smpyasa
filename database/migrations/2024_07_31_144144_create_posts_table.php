@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('banner')->nullable();
             $table->boolean('is_published')->default(true);
             $table->boolean('is_featured')->default(false);
+            $table->integer('view_number')->default(0);
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('user_id');

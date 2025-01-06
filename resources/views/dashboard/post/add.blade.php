@@ -4,6 +4,8 @@
         <link rel="stylesheet" type="text/css" href="{{ Vite::asset('resources/css/quill.snow.css') }}" />
         <script src="/assets/js/quill.js"></script>
         <link rel='stylesheet' type='text/css' href='{{ Vite::asset('resources/css/nice-select2.css') }}'>
+        <script src="/assets/js/tagify.js"></script>
+        <link rel='stylesheet' type='text/css' href='{{ Vite::asset('resources/css/tagify.css') }}'>
 
         <div class="panel px-0 border-[#e0e6ed] dark:border-[#1b2e4b]">
             <div class="px-5 mb-5 text-xl font-bold">Tambah Postingan</div>
@@ -43,6 +45,10 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="mb-4">
+                        <label for="tags-text-input">Tag</label>
+                        <input id="tags-text-input" x-model="tags" type="text" placeholder="#" class="form-input" />
+                    </div>
                     <button type="submit" class="post btn btn-primary mt-6">Submit</button>
                 </form>
             </div>
@@ -52,6 +58,21 @@
     <script src="/assets/js/nice-select2.js"></script>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            new simpleDatatables.DataTable("#userTable");
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function(e) {
+            var els = document.querySelectorAll(".selectize");
+            els.forEach(function(select) {
+                NiceSelect.bind(select);
+            });
+
+            var input = document.querySelector('#tags-text-input');
+            var tagify = new Tagify(input);
+        });
+
         document.addEventListener('alpine:init', () => {
             Alpine.data('postForm', () => ({
                 title: '',
@@ -60,6 +81,7 @@
                 is_published: false,
                 is_featured: false,
                 category: '',
+                tags: '',
 
                 handleFileUpload(event) {
                     this.image = event.target.files[0];
@@ -75,6 +97,8 @@
                     formData.append('is_published', this.is_published ? 1 : 0);
                     formData.append('is_featured', this.is_featured ? 1 : 0);
                     formData.append('category', this.category);
+                    const tagifyInput = document.querySelector('#tags-text-input');
+                    formData.append('tags', tagifyInput.value);
 
                     try {
                         const response = await fetch('/dashboard/post', {
@@ -109,17 +133,6 @@
             modules: {
                 toolbar: toolbarOptions
             },
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            new simpleDatatables.DataTable("#userTable");
-        });
-
-        document.addEventListener("DOMContentLoaded", function(e) {
-            var els = document.querySelectorAll(".selectize");
-            els.forEach(function(select) {
-                NiceSelect.bind(select);
-            });
         });
     </script>
 </x-layout.default>

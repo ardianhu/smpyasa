@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostTag;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,6 +51,20 @@ class PostController extends Controller
         $post->category_id = $validated['category'];
         $post->user_id = $loggedUser->id;
         $post->save();
+
+        $tags = json_decode($request->tags, true);
+        $tag_ids = [];
+
+        foreach ($tags as $tagData) {
+            $tagValue = $tagData['value'];
+            $tag = Tag::firstOrCreate(['name' => $tagValue]);
+            $tag_ids[] = $tag->id;
+
+            $postTag = new PostTag();
+            $postTag->post_id = $post->id;
+            $postTag->tag_id = $tag->id;
+            $postTag->save();
+        }
 
         return response()->json(['success' => true, 'post' => $post]);
     }

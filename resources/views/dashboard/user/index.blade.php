@@ -43,12 +43,24 @@
                                                 <input id="ctnPassword" name="password" type="password" placeholder="" class="form-input" required />
                                             </div>
                                             <div>
-                                                <label for="ctnSelect">Example select</label>
+                                                <label for="ctnPosition">Posisi</label>
+                                                <input id="ctnPosition" name="position" type="text" placeholder="" class="form-input" required />
+                                            </div>
+                                            <div>
+                                                <label for="ctnLevel">Level</label>
+                                                <input id="ctnLevel" name="level" type="number" placeholder="" class="form-input" required />
+                                            </div>
+                                            <div>
+                                                <label for="ctnSelect">Role</label>
                                                 <select id="ctnSelect" name="role" class="form-select text-white-dark">
                                                     @foreach ($roles as $role)
                                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+                                            <div>
+                                                <label for="ctnProfile">Foto</label>
+                                                <input id="ctnProfile" name="image" type="file" class="form-input">
                                             </div>
                                         </div>
                                         <div class="flex justify-end items-center mt-8">
@@ -67,8 +79,11 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Foto</th>
                         <th>Nama</th>
                         <th>Email</th>
+                        <th>Posisi</th>
+                        <th>Role</th>
                         <th>Level</th>
                     </tr>
                 </thead>
@@ -76,16 +91,19 @@
                     @foreach ($users as $index => $user)
                     <tr>
                         <td>{{ $index +1 }}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $user->avatar) }}" class="h-8" alt="">
+                        </td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ $user->position }}</td>
                         <td>{{ $user->role->name }}</td>
+                        <td>{{ $user->level }}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-
-    </div>
     </div>
 
     <script>
@@ -115,6 +133,7 @@
             e.preventDefault();
             let form = e.target;
             let formData = new FormData(form);
+            console.log(form);
 
             fetch('{{ route("users.store") }}', {
                     method: 'POST',

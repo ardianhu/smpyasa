@@ -29,10 +29,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'super_admin',
         ]);
         User::create([
-            'name' => 'Ardian',
+            'name' => 'Super Admin',
             'email' => 'admin@smpyasa.com',
             'password' => Hash::make('password'),
-            'role_id' => 2
+            'role_id' => 2,
+            'position' => 'Maintainer',
+            'level' => 0,
         ]);
         Category::create([
             'name' => 'Umum',

@@ -209,7 +209,43 @@
                 this.sidebar = !this.sidebar;
             },
         });
-        if (window.location.pathname === '/') {
+        // Mendapatkan daftar rute yang termasuk dalam grup 'client'
+        const clientRoutes = [
+            '/',
+            '/baca/{id}',
+            '/berita',
+            '/visi-misi',
+            '/struktur-organisasi',
+            '/komite-sekolah',
+            '/guru-dan-tenaga-kependidikan',
+            '/peserta-didik',
+            '/tentang-kurikulum',
+            '/info-kurikulum',
+            '/kalender-akademik',
+            '/jadwal-pelajaran',
+            '/format-nilai',
+            '/jadwal-ujian',
+            '/tentang-kesiswaan',
+            '/ekstra-kurikuler',
+            '/program-kerja-osis',
+            '/kegiatan-osis',
+            '/daftar-nama-siswa',
+            '/p-lima',
+            '/tata-tertib-siswa',
+            '/bp-bk',
+            '/tupoksi-sarana-prasarana',
+            '/ruang-kasek',
+            '/ruang-guru',
+            '/aula',
+            '/perpustakaan',
+            '/tupoksi-humas',
+            '/info-humas',
+            '/galeri',
+            '/hubungi-kami',
+            '/prestasi'
+        ];  // Tambahkan rute-rute grup 'client' di sini
+        
+        if (clientRoutes.includes(window.location.pathname)) {
             Alpine.store('app').toggleMenu('horizontal');
         }
     });

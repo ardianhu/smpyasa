@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Tag extends Model
@@ -12,8 +13,8 @@ class Tag extends Model
     protected $fillable = [
         'name'
     ];
-    public function post(): MorphToMany
+    public function post(): BelongsToMany
     {
-        return $this->morphedByMany(Post::class, 'post_tag');
+        return $this->belongsToMany(Post::class, 'post_tags', 'post_id', 'tag_id');
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +25,44 @@ Route::post('/dashboard/user', [UserController::class, 'store'])->name('users.st
 Route::get('/dashboard/post', [PostController::class, 'index'])->middleware('auth');
 Route::get('/dashboard/post/tambah', [PostController::class, 'create'])->middleware('auth');
 Route::post('/dashboard/post', [PostController::class, 'store'])->name('post.store')->middleware('auth');
+Route::get('/dashboard/galeri', [PhotoController::class, 'index'])->middleware('auth');
+Route::post('/dashboard/galeri', [PhotoController::class, 'store'])->name('photos.store')->middleware('auth');
 
 // client
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::name('client.')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/baca/{id}', [HomeController::class, 'read'])->name('read');
+    Route::get('/berita', [HomeController::class, 'news'])->name('news');
+    Route::get('/visi-misi', [HomeController::class, 'visiMisi'])->name('visiMisi');
+    Route::get('/struktur-organisasi', [HomeController::class, 'strukturOrganisasi'])->name('strukturOrganisasi');
+    Route::get('/komite-sekolah', [HomeController::class, 'komiteSekolah'])->name('komiteSekolah');
+    Route::get('/guru-dan-tenaga-kependidikan', [HomeController::class, 'guruDanTenagaKependidikan'])->name('guruDanTenagaKependidikan');
+    Route::get('/peserta-didik', [HomeController::class, 'pesertaDidik'])->name('pesertaDidik');
+    Route::get('/tentang-kurikulum', [HomeController::class, 'tentangKurikulum'])->name('tentangKurikulum');
+    Route::get('/info-kurikulum', [HomeController::class, 'infoKurikulum'])->name('infoKurikulum');
+    Route::get('/kalender-akademik', [HomeController::class, 'kalenderAkademik'])->name('kalenderAkademik');
+    Route::get('/jadwal-pelajaran', [HomeController::class, 'jadwalPelajaran'])->name('jadwalPelajaran');
+    Route::get('/format-nilai', [HomeController::class, 'formatNilai'])->name('formatNilai');
+    Route::get('/jadwal-ujian', [HomeController::class, 'jadwalUjian'])->name('jadwalUjian');
+    Route::get('/tentang-kesiswaan', [HomeController::class, 'tentangKesiswaan'])->name('tentangKesiswaan');
+    Route::get('/ekstra-kurikuler', [HomeController::class, 'ekstraKurikuler'])->name('ekstraKurikuler');
+    Route::get('/program-kerja-osis', [HomeController::class, 'programKerjaOsis'])->name('programKerjaOsis');
+    Route::get('/kegiatan-osis', [HomeController::class, 'kegiatanOsis'])->name('kegiatanOsis');
+    Route::get('/daftar-nama-siswa', [HomeController::class, 'daftarNamaSiswa'])->name('daftarNamaSiswa');
+    Route::get('/p-lima', [HomeController::class, 'pLima'])->name('pLima');
+    Route::get('/tata-tertib-siswa', [HomeController::class, 'tataTertibSiswa'])->name('tataTertibSiswa');
+    Route::get('/bp-bk', [HomeController::class, 'bpBk'])->name('bpBk');
+    Route::get('/tupoksi-sarana-prasarana', [HomeController::class, 'tupoksi'])->name('tupoksi');
+    Route::get('/ruang-kasek', [HomeController::class, 'ruangKasek'])->name('ruangKasek');
+    Route::get('/ruang-guru', [HomeController::class, 'ruangGuru'])->name('ruangGuru');
+    Route::get('/aula', [HomeController::class, 'aula'])->name('aula');
+    Route::get('/perpustakaan', [HomeController::class, 'perpustakaan'])->name('perpustakaan');
+    Route::get('/tupoksi-humas', [HomeController::class, 'tupoksiHumas'])->name('tupoksiHumas');
+    Route::get('/info-humas', [HomeController::class, 'infoHumas'])->name('infoHumas');
+    Route::get('/galeri', [HomeController::class, 'galeri'])->name('galeri');
+    Route::get('/hubungi-kami', [HomeController::class, 'hubungiKami'])->name('hubungiKami');
+    Route::get('/prestasi', [HomeController::class, 'prestasi'])->name('prestasi');
+});
 
 
 // vristo example here
