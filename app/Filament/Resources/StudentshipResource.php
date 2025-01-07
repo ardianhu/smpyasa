@@ -19,6 +19,14 @@ class StudentshipResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    protected static ?string $navigationLabel = 'Kesiswaan';
+
+    protected static ?string $modelLabel = 'Kesiswaan';
+
+    protected static ?string $pluralModelLabel = 'Kesiswaan';
+
+    protected static ?string $navigationGroup = 'Halaman';
+
     public static function form(Form $form): Form
     {
         return $form

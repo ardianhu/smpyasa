@@ -127,13 +127,13 @@
                                     </div>
                                 </div>
                                 <div class="p-4">
-                                    <h5 class="text-xl font-bold mb-2 text-gray-800 dark:text-white line-clamp-2">{{ $post->title }}</h5>
+                                    <h5 class="text-xl font-bold text-gray-800 dark:text-white line-clamp-2">{{ $post->title }}</h5>
                                     <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{!! \Illuminate\Support\Str::words(strip_tags($post->description, '
                                     <p><b><i><strong><em>
                                                         <ul>
                                                             <li>'), 20, '...') !!}
                                     </p>
-                                    <div class="flex items-center justify-between">
+                                    <div class="flex items-center justify-between mt-4">
                                         <div class="flex items-center">
                                             <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
                                                 @if ($post->user->avatar)

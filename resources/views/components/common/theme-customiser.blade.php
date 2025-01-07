@@ -4,8 +4,9 @@
 
     <nav class="bg-white fixed ltr:-right-[400px] rtl:-left-[400px] top-0 bottom-0 w-full max-w-[400px] shadow-[5px_0_25px_0_rgba(94,92,154,0.1)] transition-[right] duration-300 z-[51] dark:bg-[#0e1726] p-4"
         :class="{ 'ltr:!right-0 rtl:!left-0': showCustomizer }">
+        <!-- to reset the position of the customizer button make the mt-xx to the my-auto -->
         <a href="javascript:;"
-            class="bg-primary ltr:rounded-tl-full rtl:rounded-tr-full ltr:rounded-bl-full rtl:rounded-br-full absolute ltr:-left-12 rtl:-right-12 top-0 bottom-0 my-auto w-12 h-10 flex justify-center items-center text-white cursor-pointer"
+            class="bg-success ltr:rounded-tl-full rtl:rounded-tr-full ltr:rounded-bl-full rtl:rounded-br-full absolute ltr:-left-12 rtl:-right-12 top-0 bottom-0 mt-16 md:mt-44 w-12 h-10 flex justify-center items-center text-white cursor-pointer"
             @click="showCustomizer = !showCustomizer">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="animate-[spin_3s_linear_infinite] w-5 h-5">
@@ -28,15 +29,15 @@
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
                 </a>
-                <h4 class="mb-1 dark:text-white">TEMPLATE CUSTOMIZER</h4>
-                <p class="text-white-dark">Set preferences that will be cookied for your live preview demonstration.</p>
+                <h4 class="mb-1 dark:text-white">PENGATURAN TAMPILAN</h4>
+                <p class="text-white-dark">Atur preferensi untuk pratinjau web ini.</p>
             </div>
             <div class="border border-dashed border-[#e0e6ed] dark:border-[#1b2e4b] rounded-md mb-3 p-3">
-                <h5 class="mb-1 text-base dark:text-white leading-none">Color Scheme</h5>
-                <p class="text-white-dark text-xs">Overall light or dark presentation.</p>
+                <h5 class="mb-1 text-base dark:text-white leading-none">Tema</h5>
+                <p class="text-white-dark text-xs">Tampilan secara keseluruhan, terang atau gelap.</p>
                 <div class="grid grid-cols-3 gap-2 mt-3">
                     <button type="button" class="btn"
-                        :class="[$store.app.theme === 'light' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.theme === 'light' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleTheme('light')">
 
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -57,10 +58,10 @@
                             <path opacity="0.5" d="M19.7778 19.7773L17.5558 17.5551" stroke="currentColor"
                                 stroke-width="1.5" stroke-linecap="round"></path>
                         </svg>
-                        Light
+                        Terang
                     </button>
                     <button type="button" class="btn"
-                        :class="[$store.app.theme === 'dark' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.theme === 'dark' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleTheme('dark')">
 
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -69,10 +70,10 @@
                                 d="M21.0672 11.8568L20.4253 11.469L21.0672 11.8568ZM12.1432 2.93276L11.7553 2.29085V2.29085L12.1432 2.93276ZM21.25 12C21.25 17.1086 17.1086 21.25 12 21.25V22.75C17.9371 22.75 22.75 17.9371 22.75 12H21.25ZM12 21.25C6.89137 21.25 2.75 17.1086 2.75 12H1.25C1.25 17.9371 6.06294 22.75 12 22.75V21.25ZM2.75 12C2.75 6.89137 6.89137 2.75 12 2.75V1.25C6.06294 1.25 1.25 6.06294 1.25 12H2.75ZM15.5 14.25C12.3244 14.25 9.75 11.6756 9.75 8.5H8.25C8.25 12.5041 11.4959 15.75 15.5 15.75V14.25ZM20.4253 11.469C19.4172 13.1373 17.5882 14.25 15.5 14.25V15.75C18.1349 15.75 20.4407 14.3439 21.7092 12.2447L20.4253 11.469ZM9.75 8.5C9.75 6.41182 10.8627 4.5828 12.531 3.57467L11.7553 2.29085C9.65609 3.5593 8.25 5.86509 8.25 8.5H9.75ZM12 2.75C11.9115 2.75 11.8077 2.71008 11.7324 2.63168C11.6686 2.56527 11.6538 2.50244 11.6503 2.47703C11.6461 2.44587 11.6482 2.35557 11.7553 2.29085L12.531 3.57467C13.0342 3.27065 13.196 2.71398 13.1368 2.27627C13.0754 1.82126 12.7166 1.25 12 1.25V2.75ZM21.7092 12.2447C21.6444 12.3518 21.5541 12.3539 21.523 12.3497C21.4976 12.3462 21.4347 12.3314 21.3683 12.2676C21.2899 12.1923 21.25 12.0885 21.25 12H22.75C22.75 11.2834 22.1787 10.9246 21.7237 10.8632C21.286 10.804 20.7293 10.9658 20.4253 11.469L21.7092 12.2447Z"
                                 fill="currentColor"></path>
                         </svg>
-                        Dark
+                        Gelap
                     </button>
                     <button type="button" class="btn"
-                        :class="[$store.app.theme === 'system' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.theme === 'system' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleTheme('system')">
 
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -85,76 +86,76 @@
                             <path opacity="0.5" d="M15 15H9" stroke="currentColor" stroke-width="1.5"
                                 stroke-linecap="round"></path>
                         </svg>
-                        System
+                        Sistem
                     </button>
                 </div>
             </div>
 
             <div class="border border-dashed border-[#e0e6ed] dark:border-[#1b2e4b] rounded-md mb-3 p-3">
-                <h5 class="mb-1 text-base dark:text-white leading-none">Navigation Position</h5>
-                <p class="text-white-dark text-xs">Select the primary navigation paradigm for your app.</p>
+                <h5 class="mb-1 text-base dark:text-white leading-none">Posisi Menu Navigasi</h5>
+                <p class="text-white-dark text-xs">Pilih posisi menu navigasi.</p>
                 <div class="grid grid-cols-3 gap-2 mt-3">
                     <button type="button" class="btn"
-                        :class="[$store.app.menu === 'horizontal' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.menu === 'horizontal' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleMenu('horizontal')">
                         Horizontal
                     </button>
                     <button type="button" class="btn"
-                        :class="[$store.app.menu === 'vertical' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.menu === 'vertical' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleMenu('vertical')">
                         Vertical
                     </button>
                     <button type="button" class="btn"
-                        :class="[$store.app.menu === 'collapsible-vertical' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.menu === 'collapsible-vertical' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleMenu('collapsible-vertical')">
                         Collapsible
                     </button>
                 </div>
-                <div class="mt-5 text-primary">
+                <div class="mt-5 text-success">
                     <label class="inline-flex mb-0">
                         <input x-model="$store.app.semidark" type="checkbox" :value="true"
                             class="form-checkbox" @change="$store.app.toggleSemidark()" />
-                        <span>Semi Dark (Sidebar & Header)</span>
+                        <span>Semi Gelap (Sidebar & Header)</span>
                     </label>
                 </div>
             </div>
             <div class="border border-dashed border-[#e0e6ed] dark:border-[#1b2e4b] rounded-md mb-3 p-3">
-                <h5 class="mb-1 text-base dark:text-white leading-none">Layout Style</h5>
-                <p class="text-white-dark text-xs">Select the primary layout style for your app.</p>
+                <h5 class="mb-1 text-base dark:text-white leading-none">Gaya Layout</h5>
+                <p class="text-white-dark text-xs">Pilih gaya layout.</p>
                 <div class="flex gap-2 mt-3">
                     <button type="button" class="btn flex-auto"
-                        :class="[$store.app.layout === 'boxed-layout' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.layout === 'boxed-layout' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleLayout('boxed-layout')">
-                        Box
+                        Kotak
                     </button>
                     <button type="button" class="btn flex-auto"
-                        :class="[$store.app.layout === 'full' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.layout === 'full' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleLayout('full')">
-                        Full
+                        Penuh
                     </button>
                 </div>
             </div>
-            <div class="border border-dashed border-[#e0e6ed] dark:border-[#1b2e4b] rounded-md mb-3 p-3">
+            <!-- <div class="border border-dashed border-[#e0e6ed] dark:border-[#1b2e4b] rounded-md mb-3 p-3">
                 <h5 class="mb-1 text-base dark:text-white leading-none">Direction</h5>
                 <p class="text-white-dark text-xs">Select the direction for your app.</p>
                 <div class="flex gap-2 mt-3">
                     <button type="button" class="btn flex-auto"
-                        :class="[$store.app.rtlClass === 'ltr' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.rtlClass === 'ltr' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleRTL('ltr')">
                         LTR
                     </button>
                     <button type="button" class="btn flex-auto"
-                        :class="[$store.app.rtlClass === 'rtl' ? 'btn-primary' : 'btn-outline-primary']"
+                        :class="[$store.app.rtlClass === 'rtl' ? 'btn-success' : 'btn-outline-success']"
                         @click="$store.app.toggleRTL('rtl')">
                         RTL
                     </button>
                 </div>
-            </div>
+            </div> -->
 
             <div class="border border-dashed border-[#e0e6ed] dark:border-[#1b2e4b] rounded-md mb-3 p-3">
-                <h5 class="mb-1 text-base dark:text-white leading-none">Navbar Type</h5>
-                <p class="text-white-dark text-xs">Sticky or Floating.</p>
-                <div class="mt-3 flex items-center gap-3 text-primary">
+                <h5 class="mb-1 text-base dark:text-white leading-none">Tipe Menu Navigasi</h5>
+                <p class="text-white-dark text-xs">Sticky atau Floating.</p>
+                <div class="mt-3 flex items-center gap-3 text-success">
                     <label class="inline-flex mb-0">
                         <input x-model="$store.app.navbar" type="radio" value="navbar-sticky" class="form-radio"
                             @change="$store.app.toggleNavbar()" />
@@ -175,21 +176,21 @@
 
 
             <div class="border border-dashed border-[#e0e6ed] dark:border-[#1b2e4b] rounded-md mb-3 p-3">
-                <h5 class="mb-1 text-base dark:text-white leading-none">Router Transition</h5>
-                <p class="text-white-dark text-xs">Animation of main content.</p>
+                <h5 class="mb-1 text-base dark:text-white leading-none">Animasi Transisi</h5>
+                <p class="text-white-dark text-xs">Pilih animasi transisi konten.</p>
                 <div class="mt-3">
-                    <select x-model="$store.app.animation" class="form-select border-primary text-primary"
+                    <select x-model="$store.app.animation" class="form-select border-success text-success"
                         @change="$store.app.toggleAnimation()">
-                        <option value="">Select Animation</option>
-                        <option value="animate__fadeIn">Fade</option>
-                        <option value="animate__fadeInDown">Fade Down</option>
-                        <option value="animate__fadeInUp">Fade Up</option>
-                        <option value="animate__fadeInLeft">Fade Left</option>
-                        <option value="animate__fadeInRight">Fade Right</option>
-                        <option value="animate__slideInDown">Slide Down</option>
-                        <option value="animate__slideInLeft">Slide Left</option>
-                        <option value="animate__slideInRight">Slide Right</option>
-                        <option value="animate__zoomIn">Zoom In</option>
+                        <option value="">Pilih Animasi</option>
+                        <option value="animate__fadeIn">Memudar</option>
+                        <option value="animate__fadeInDown">Memudar ke bawah</option>
+                        <option value="animate__fadeInUp">Memudar ke atas</option>
+                        <option value="animate__fadeInLeft">Memudar ke kiri</option>
+                        <option value="animate__fadeInRight">Memudar ke kanan</option>
+                        <option value="animate__slideInDown">Geser ke bawah</option>
+                        <option value="animate__slideInLeft">Geser ke kiri</option>
+                        <option value="animate__slideInRight">Geser ke kanan</option>
+                        <option value="animate__zoomIn">Perbesar</option>
                     </select>
                 </div>
             </div>

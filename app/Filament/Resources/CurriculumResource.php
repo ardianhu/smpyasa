@@ -22,7 +22,10 @@ class CurriculumResource extends Resource
     protected static ?string $navigationLabel = 'Kurikulum';
 
     protected static ?string $modelLabel = 'Kurikulum';
+
     protected static ?string $pluralModelLabel = 'Kurikulum';
+
+    protected static ?string $navigationGroup = 'Halaman';
 
     public static function form(Form $form): Form
     {

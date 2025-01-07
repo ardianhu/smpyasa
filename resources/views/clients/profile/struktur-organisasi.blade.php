@@ -14,14 +14,14 @@
             @endphp
 
             @foreach ($groupedUsers as $level => $usersInLevel)
-            <div class="mb-8">
+            <div class="mb-0 lg:mb-4">
                 <div class="flex flex-wrap justify-center">
                     @foreach ($usersInLevel as $user)
-                    <div class="bg-white shadow-md rounded-lg overflow-hidden m-4 w-64">
+                    <div class="bg-white dark:bg-[#0e1726] shadow-md rounded-lg overflow-hidden m-4 w-64">
                         <img src="{{ asset('storage/' . $user->avatar) }}" alt="{{ $user->name }}" class="w-full h-72 object-cover object-top">
                         <div class="p-4 text-center">
                             <h3 class="text-xl font-semibold mb-2">{{ $user->name }}</h3>
-                            <p class="text-gray-600">{{ $user->position }}</p>
+                            <p class="">{{ $user->position }}</p>
                         </div>
                     </div>
                     @endforeach

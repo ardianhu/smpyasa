@@ -77,29 +77,6 @@
                         </button>
                     </div>
 
-                    <!-- link -->
-                    @if($authUser == null)
-                    <div class="flex items-center justify-center space-x-2">
-                        <a href="mailto:operator@smp.yasa" target="_blank" class="flex items-center space-x-2 hover:text-green-700">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" fill="currentColor" />
-                                </svg>
-                            </span>
-                            <span class="hidden md:inline underline">operator@smp.yasa</span>
-                        </a>
-                    </div>
-                    <div class="flex items-center justify-center space-x-2">
-                        <a href="https://wa.me/6287730388573" target="_blank" class="flex items-center space-x-2 hover:text-green-700">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
-                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                                </svg>
-                            </span>
-                            <span class="hidden md:inline underline">+62 87730388573</span>
-                        </a>
-                    </div>
-                    @else
                     <!-- dark theme -->
                     <div>
                         <a href="javascript:;" x-cloak x-show="$store.app.theme === 'light'" href="javascript:;" class="flex items-center p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-green-700 hover:bg-white-light/90 dark:hover:bg-dark/60" @click="$store.app.toggleTheme('dark')">
@@ -128,6 +105,31 @@
                             </svg>
                         </a>
                     </div>
+
+
+                    <!-- link -->
+                    @if($authUser == null)
+                    <div class="flex items-center justify-center space-x-2">
+                        <a href="mailto:operator@smp.yasa" target="_blank" class="flex items-center space-x-2 hover:text-green-700">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z" fill="currentColor" />
+                                </svg>
+                            </span>
+                            <span class="hidden md:inline underline">operator@smp.yasa</span>
+                        </a>
+                    </div>
+                    <div class="flex items-center justify-center space-x-2">
+                        <a href="https://wa.me/6287730388573" target="_blank" class="flex items-center space-x-2 hover:text-green-700">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                                </svg>
+                            </span>
+                            <span class="hidden md:inline underline">+62 87730388573</span>
+                        </a>
+                    </div>
+                    @else
 
                     <!-- languages -->
                     <!-- <div class="dropdown shrink-0" x-data="dropdown" @click.outside="open = false">
@@ -207,7 +209,7 @@
                         </template>
                     </ul>
                 </div> -->
-                    <div class="dropdown" x-data="dropdown" @click.outside="open = false">
+                    <!-- <div class="dropdown" x-data="dropdown" @click.outside="open = false">
                         <a href="javascript:;" class="relative block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60" @click="toggle">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M19.0001 9.7041V9C19.0001 5.13401 15.8661 2 12.0001 2C8.13407 2 5.00006 5.13401 5.00006 9V9.7041C5.00006 10.5491 4.74995 11.3752 4.28123 12.0783L3.13263 13.8012C2.08349 15.3749 2.88442 17.5139 4.70913 18.0116C9.48258 19.3134 14.5175 19.3134 19.291 18.0116C21.1157 17.5139 21.9166 15.3749 20.8675 13.8012L19.7189 12.0783C19.2502 11.3752 19.0001 10.5491 19.0001 9.7041Z" stroke="currentColor" stroke-width="1.5" />
@@ -276,7 +278,7 @@
                                 </li>
                             </template>
                         </ul>
-                    </div>
+                    </div> -->
                     <!-- User -->
                     <div class="dropdown flex-shrink-0" x-data="dropdown" @click.outside="open = false">
                         <a href="javascript:;" class="relative group" @click="toggle()">
@@ -303,7 +305,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="/users/profile" class="dark:hover:text-white" @click="toggle">
                                     <svg class="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="6" r="4" stroke="currentColor" stroke-width="1.5" />
@@ -331,7 +333,7 @@
                                         </g>
                                     </svg>
                                     Lock Screen</a>
-                            </li>
+                            </li> -->
                             <li class="border-t border-white-light dark:border-white-light/10">
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="m-0 p-0">
                                     @csrf
