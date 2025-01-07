@@ -39,8 +39,5 @@ class DatabaseSeeder extends Seeder
         Category::create([
             'name' => 'Umum',
         ]);
-        Tag::create([
-            'name' => 'olimpiade',
-        ]);
     }
 }

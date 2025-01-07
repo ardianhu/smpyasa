@@ -11,12 +11,12 @@
         <div class="relative -mx-6 -mt-6">
             <div class="swiper mb-5" id="sliderCustom">
                 <div class="swiper-wrapper">
-                    @foreach ($photos as $photo)
-                    @foreach (json_decode($photo->image_path) as $image)
+                    @foreach ($galleries as $gallery)
+                    @foreach ($gallery->photos as $photo)
                     <div class="swiper-slide">
-                        <img src="{{ asset('storage/' . $image) }}" class="w-full h-[240px] lg:h-[720px] object-cover" alt="image" />
+                        <img src="{{ asset('storage/' . $photo['photo']) }}" class="w-full h-[240px] lg:h-[720px] object-cover" alt="image" />
                         <div class="absolute z-[999] text-white bottom-8 left-1/2 w-full -translate-x-1/2 text-center sm:px-0 px-11">
-                            <div class="text-3xl font-bold" style="text-shadow: 1px 1px 2px black;">{{ $photo->title }}</div>
+                            <div class="text-3xl font-bold" style="text-shadow: 1px 1px 2px black;">{{ $gallery->title }}</div>
                         </div>
                     </div>
                     @endforeach

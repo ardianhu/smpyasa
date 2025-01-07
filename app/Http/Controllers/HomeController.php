@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Curriculum;
+use App\Models\Gallery;
 use App\Models\Photo;
 use App\Models\Post;
 use App\Models\Studentship;
@@ -19,8 +20,8 @@ class HomeController extends Controller
     {
         $posts = Post::all();
         $featured = Post::where('is_featured', 1)->get();
-        $photos = Photo::all(); // Retrieve all photos
-        return view('clients.utama.beranda', compact('posts', 'featured', 'photos'));
+        $galleries = Gallery::with('category')->latest()->take(5)->get();
+        return view('clients.utama.beranda', compact('posts', 'featured', 'galleries'));
     }
     public function read($id)
     {
@@ -211,8 +212,9 @@ class HomeController extends Controller
     }
     public function galeri()
     {
-        $photos = Photo::all(); // Retrieve all photos
-        return view('clients.lainnya.galeri', compact('photos'));
+        $galleries = Gallery::with('category')->paginate(10);
+        // dd($galleries);
+        return view('clients.lainnya.galeri', compact('galleries'));
     }
     public function hubungiKami()
     {

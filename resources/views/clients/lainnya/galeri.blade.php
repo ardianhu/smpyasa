@@ -12,15 +12,23 @@
         <div class="container">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-10">
                 <!-- Loop through the photos and display them -->
-                @foreach ($photos as $photo)
-                @foreach (json_decode($photo->image_path) as $image)
-                <a href="{{ asset('storage/' . $image) }}" data-fancybox="gallery" data-caption="{{ $photo->title }}" class="block">
-                    <img src="{{ asset('storage/' . $image) }}" alt="Photo" class="rounded-md w-full h-64 object-cover">
+                @foreach ($galleries as $gallery)
+
+                @foreach ($gallery->photos as $photo)
+                <a href="{{ asset('storage/' . $photo['photo']) }}" data-fancybox="gallery-{{ $gallery->id }}" data-caption="{{ $gallery->title }} - {{ $gallery->category->name}}" class="block">
+                    <img src="{{ asset('storage/' . $photo['photo']) }}" alt="Photo" class="rounded-md w-full h-64 object-cover">
                 </a>
                 @endforeach
                 @endforeach
+
+            </div>
+            <div class="flex justify-center items-center">
+                <div class="mt-4 md:max-w-xs">
+                    {{ $galleries->links() }}
+                </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script>
