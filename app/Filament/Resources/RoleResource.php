@@ -25,6 +25,11 @@ class RoleResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Peran';
 
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->role->name != "author";
+    }
+
     public static function form(Form $form): Form
     {
         return $form

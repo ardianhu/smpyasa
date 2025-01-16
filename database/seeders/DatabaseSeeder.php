@@ -28,6 +28,9 @@ class DatabaseSeeder extends Seeder
         Role::create([
             'name' => 'super_admin',
         ]);
+        Role::create([
+            'name' => 'author',
+        ]);
         User::create([
             'name' => 'Super Admin',
             'email' => 'admin@smpyasa.com',

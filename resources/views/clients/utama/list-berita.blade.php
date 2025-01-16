@@ -17,6 +17,7 @@
                 <div class="col-span-4 lg:col-span-3">
                     <table id="userTable" class="table -mt-10">
                         <tbody>
+                            @if(count($posts) > 0)
                             @foreach ($posts as $post)
                             <tr>
                                 <td>
@@ -43,6 +44,13 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @else
+                            <tr>
+                                <td>
+                                    <div class="text-center text-xl font-bold text-gray-700">Tidak ada berita saat ini.</div>
+                                </td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                 </div>

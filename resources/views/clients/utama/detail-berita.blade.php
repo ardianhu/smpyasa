@@ -41,6 +41,10 @@
                         margin-bottom: 1rem;
                         text-indent: 50px;
                     }
+
+                    ol {
+                        list-style: decimal;
+                    }
                 </style>
                 <div class="rich-editor-content text-lg text-justify leading-relaxed">{!! $berita->description !!}</div>
             </div>

@@ -175,3 +175,7 @@ Route::view('/auth/cover-login', 'auth.cover-login');
 Route::view('/auth/cover-register', 'auth.cover-register');
 Route::view('/auth/cover-lockscreen', 'auth.cover-lockscreen');
 Route::view('/auth/cover-password-reset', 'auth.cover-password-reset');
+
+
+// error
+Route::any('{any}', [HomeController::class, 'notfound']);

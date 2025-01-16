@@ -27,7 +27,7 @@ class PostResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Berita';
 
-    // protected static ?string $navigationGroup = 'Utama';
+    protected static ?string $navigationGroup = 'Berita & Postingan';
 
     public static function form(Form $form): Form
     {
@@ -75,7 +75,8 @@ class PostResource extends Resource
                                             ->label('Tag Name'), // Form to create a new tag
                                     ])
                                     ->createOptionUsing(function ($data) {
-                                        return \App\Models\Tag::create(['name' => $data['name']]);
+                                        $tag = \App\Models\Tag::create(['name' => $data['name']]);
+                                        return $tag->id;
                                     })
                                     ->searchable() // Allows searching for existing tags
                                     ->allowHtml(), // Optional, if tag names might include HTML

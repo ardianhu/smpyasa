@@ -5,7 +5,7 @@
     <div x-data="home">
         <!-- loop -->
         <!-- Wrap the slider in a full-width container -->
-        <x-header-banner :background-image="'/assets/images/header.jpg'" :title="'GURU & TENAGA KEPENDIDIKAN'" />
+        <x-header-banner :background-image="'/assets/images/header.jpg'" :title="'DIREKTORI'" />
         <div class="container">
 
 
