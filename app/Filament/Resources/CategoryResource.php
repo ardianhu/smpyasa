@@ -19,6 +19,21 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
+    public static function canCreate(): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
     protected static ?string $navigationLabel = 'Kategori';
 
     protected static ?string $modelLabel = 'Kategori';

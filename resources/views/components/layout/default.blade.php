@@ -22,7 +22,20 @@
     <script defer src="/assets/js/popper.min.js"></script>
     <script defer src="/assets/js/tippy-bundle.umd.min.js"></script>
     <script defer src="/assets/js/sweetalert.min.js"></script>
+    @php
+    $isProduction = app()->environment('production');
+    $manifestPath = $isProduction ? '../public_html/build/manifest.json' : public_path('build/manifest.json');
+    @endphp
+
+    @if ($isProduction && file_exists($manifestPath))
+    @php
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+    @endphp
+    <link rel="stylesheet" href="{{ config('app.url') }}/build/{{ $manifest['resources/css/app.css']['file'] }}">
+    @else
+    @viteReactRefresh
     @vite(['resources/css/app.css'])
+    @endif
 </head>
 
 <body x-data="main" class="antialiased relative font-nunito text-sm font-normal overflow-x-hidden" :class="[$store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme, $store.app.menu, $store.app.layout, $store.app

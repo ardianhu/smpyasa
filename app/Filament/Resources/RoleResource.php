@@ -27,7 +27,7 @@ class RoleResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()->role->name != "author";
+        return auth()->user()->role->name !== "author" && auth()->user()->role->name !== "default";
     }
 
     public static function form(Form $form): Form

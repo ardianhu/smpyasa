@@ -12,13 +12,11 @@
         <div class="container">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mt-10">
                 <!-- Loop through the photos and display them -->
-                @foreach ($galleries as $gallery)
 
-                @foreach ($gallery->photos as $photo)
-                <a href="{{ asset('storage/' . $photo['photo']) }}" data-fancybox="gallery-{{ $gallery->id }}" data-caption="{{ $gallery->title }} - {{ $gallery->category->name}}" class="block">
-                    <img src="{{ asset('storage/' . $photo['photo']) }}" alt="Photo" class="rounded-md w-full h-64 object-cover">
+                @foreach ($galleries as $gallery)
+                <a href="{{ $gallery['url'] }}" data-fancybox="{{ $gallery['url'] }}" class="block">
+                    <img src="{{ $gallery['url'] }}" alt="Photo" class="rounded-md w-full h-64 object-cover">
                 </a>
-                @endforeach
                 @endforeach
 
             </div>

@@ -11,35 +11,85 @@
                 <!-- Visi Section -->
                 <div class="mb-12 bg-white dark:bg-[#0e1726] rounded-lg shadow-md p-8 transition-all duration-300 hover:shadow-lg">
                     <h2 class="text-3xl font-bold text-green-700 mb-6">Visi</h2>
-                    <p class="text-lg leading-relaxed">
-                        Unggul dalam keshalehan individual dan sosial serta kompetitif di era global
-                    </p>
+                    <ul class="list-disc list-inside text-lg space-y-4">
+                        @if (!empty($info->visi))
+
+                        @php
+                        $visiItems = is_string($info->visi) ? json_decode($info->visi, true) : $info->visi;
+                        @endphp
+
+                        @if (is_array($visiItems) && !empty($visiItems))
+                        @foreach ($visiItems as $visi)
+                        @if (isset($visi['value']))
+                        <li>{{ $visi['value'] }}</li>
+                        @endif
+                        @endforeach
+                        @else
+                        <li>Visi tidak tersedia.</li>
+                        @endif
+
+                        @else
+                        <li>Visi tidak tersedia.</li>
+                        @endif
+                    </ul>
                 </div>
 
                 <!-- Misi Section -->
                 <div class="mb-12 bg-white dark:bg-[#0e1726] rounded-lg shadow-md p-8 transition-all duration-300 hover:shadow-lg">
                     <h2 class="text-3xl font-bold text-green-700 mb-6">Misi</h2>
                     <ul class="list-disc list-inside text-lg space-y-4">
-                        <li>Meningkatkan mutu belajar mengajar secara efektif dan efisien</li>
-                        <li>Mengembangkan potensi dasar sesuai minat dan bakat siswa</li>
-                        <li>Menumbuh kembangkan pemahaman terhadap nilai-nilai keagamaan yang moderat dan seimbang</li>
-                        <li>Meningkatkan penghayatan terhadap budaya bangsa dan kearifan lokal sebagai inspirasi bersikap</li>
-                        <li>Menerapkan manajemen partisipatif dengan melibatkan masyarakat sekolah serta warga masyarakat secara terbuka dan demokratis</li>
-                        <li>Mewujudkan keadilan pendidikan yang berkualitas</li>
-                        <li>Mengembangkan kurikulum terpadu antara sekolah dan pesantren yang berorientasi Aswajah An-Nahdhiyah</li>
+                        @if (!empty($info->misi))
+
+                        @php
+                        $misiItems = is_string($info->misi) ? json_decode($info->misi, true) : $info->misi;
+                        @endphp
+
+                        @if (is_array($misiItems) && !empty($misiItems))
+                        @foreach ($misiItems as $misi)
+                        @if (isset($misi['value']))
+                        <li>{{ $misi['value'] }}</li>
+                        @endif
+                        @endforeach
+                        @else
+                        <li>Misi tidak tersedia.</li>
+                        @endif
+
+                        @else
+                        <li>Misi tidak tersedia.</li>
+                        @endif
+
                     </ul>
                 </div>
 
                 <!-- Tujuan Section -->
                 <div class="bg-white dark:bg-[#0e1726] rounded-lg shadow-md p-8 transition-all duration-300 hover:shadow-lg">
                     <h2 class="text-3xl font-bold text-green-700 mb-6">Tujuan</h2>
-                    <p class="text-lg leading-relaxed">
-                        Tujuan kami adalah menciptakan lingkungan belajar yang inspiratif dan kondusif, di mana setiap peserta didik dapat mengembangkan potensi dirinya secara maksimal. Kami berkomitmen untuk mempersiapkan generasi penerus yang tidak hanya unggul dalam akademik, tetapi juga memiliki kecakapan hidup, kepekaan sosial, dan semangat kepemimpinan yang diperlukan untuk menjadi agen perubahan positif dalam masyarakat global yang terus berkembang.
-                    </p>
+                    <ul class="list-disc list-inside text-lg space-y-4">
+                        @if (!empty($info->tujuan))
+
+                        @php
+                        $tujuanItems = is_string($info->tujuan) ? json_decode($info->tujuan, true) : $info->tujuan;
+                        @endphp
+
+                        @if (is_array($tujuanItems) && !empty($tujuanItems))
+                        @foreach ($tujuanItems as $tujuan)
+                        @if (isset($tujuan['value']))
+                        <li>{{ $tujuan['value'] }}</li>
+                        @endif
+                        @endforeach
+                        @else
+                        <li>Tujuan tidak tersedia.</li>
+                        @endif
+
+                        @else
+                        <li>Tujuan tidak tersedia.</li>
+                        @endif
+
+                    </ul>
                 </div>
             </div>
-
         </div>
+
     </div>
 
     <script>

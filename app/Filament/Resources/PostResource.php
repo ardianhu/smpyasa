@@ -21,6 +21,21 @@ class PostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 
+    public static function canCreate(): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
     protected static ?string $navigationLabel = 'Postingan';
 
     protected static ?string $modelLabel = 'Berita';
@@ -39,7 +54,7 @@ class PostResource extends Resource
 
                         Forms\Components\FileUpload::make('banner')
                             ->label('Banner')
-                            ->directory('images')
+                            ->directory('galleries')
                             ->disk('public')
                             ->image(),
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
 use App\Models\Category;
 use App\Models\Curriculum;
 use App\Models\Gallery;
@@ -16,6 +17,7 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
@@ -91,11 +93,14 @@ class HomeController extends Controller
     }
     public function komiteSekolah()
     {
-        return view('clients.profile.komite-sekolah');
+        $comite = User::where('is_on_comite', true)->get();
+        // dd($comite);
+        return view('clients.profile.komite-sekolah', compact('comite'));
     }
     public function guruDanTenagaKependidikan()
     {
-        return view('clients.direktori.guru-dan-tenaga-kependidikan');
+        $teachers = User::where('is_teacher', true)->get();
+        return view('clients.direktori.guru-dan-tenaga-kependidikan', compact('teachers'));
     }
     public function pesertaDidik(Request $request)
     {
@@ -118,16 +123,18 @@ class HomeController extends Controller
             $students->where('graduation_year', $graduationYear);
         }
 
-        // Execute the query to get the filtered students
-        $students = $students->get();
-        // dd($students);
+        // Check if there's no query, make the students null
+        if (!$request->has('class') && !$request->has('graduation-year')) {
+            $students = null;
+        } else {
+            // Execute the query to get the filtered students
+            $students = $students->get();
+        }
 
         $graduationYears = Student::select('graduation_year')
             ->distinct()
             ->orderBy('graduation_year', 'asc')
             ->pluck('graduation_year');
-
-        // dd($classes, $graduationYears, $students);
 
         return view('clients.direktori.peserta-didik', compact('classes', 'students', 'graduationYears'));
     }
@@ -139,7 +146,13 @@ class HomeController extends Controller
         $data = $kurikulum->tentang_kurikulum ?? null;
         $title = 'KURIKULUM';
         $sub_title = 'Tentang Kurikulum';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kurikulum');
+            })
+            ->get();
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function infoKurikulum()
     {
@@ -150,7 +163,13 @@ class HomeController extends Controller
         $title = 'KURIKULUM';
         $sub_title = 'Info Kurikulum';
 
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kurikulum');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function kalenderAkademik()
     {
@@ -160,7 +179,14 @@ class HomeController extends Controller
         $data = $kurikulum->kalender_akademik ?? null;
         $title = 'KURIKULUM';
         $sub_title = 'Kalender Akademik';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kurikulum');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function jadwalPelajaran()
     {
@@ -170,7 +196,14 @@ class HomeController extends Controller
         $data = $kurikulum->jadwal_pelajaran ?? null;
         $title = 'KURIKULUM';
         $sub_title = 'Jadwal Pelajaran';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kurikulum');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function formatNilai()
     {
@@ -180,7 +213,14 @@ class HomeController extends Controller
         $data = $kurikulum->format_nilai ?? null;
         $title = 'KURIKULUM';
         $sub_title = 'Format Nilai';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kurikulum');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function jadwalUjian()
     {
@@ -190,7 +230,14 @@ class HomeController extends Controller
         $data = $kurikulum->jadwal_ujian ?? null;
         $title = 'KURIKULUM';
         $sub_title = 'Jadwal Ujian';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kurikulum');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function tentangKesiswaan()
     {
@@ -200,7 +247,14 @@ class HomeController extends Controller
         $data = $kesiswaan->tentang_kesiswaan ?? null;
         $title = 'KESISWAAN';
         $sub_title = 'Tentang Kesiswaan';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kesiswaan');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function ekstraKurikuler()
     {
@@ -210,7 +264,14 @@ class HomeController extends Controller
         $data = $kesiswaan->ekstrakurikuler ?? null;
         $title = 'KESISWAAN';
         $sub_title = 'Ekstrakurikuler';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kesiswaan');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function programKerjaOsis()
     {
@@ -220,7 +281,14 @@ class HomeController extends Controller
         $data = $kesiswaan->program_kerja_osis ?? null;
         $title = 'KESISWAAN';
         $sub_title = 'Program Kerja Osis';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kesiswaan');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function kegiatanOsis()
     {
@@ -230,7 +298,14 @@ class HomeController extends Controller
         $data = $kesiswaan->kegiatan_osis ?? null;
         $title = 'KESISWAAN';
         $sub_title = 'Kegiatan Osis';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kesiswaan');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function daftarNamaSiswa()
     {
@@ -240,7 +315,14 @@ class HomeController extends Controller
         $data = $kesiswaan->daftar_nama_siswa ?? null;
         $title = 'KESISWAAN';
         $sub_title = 'Daftar Nama Siswa';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kesiswaan');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function pLima()
     {
@@ -250,7 +332,14 @@ class HomeController extends Controller
         $data = $kesiswaan->p5 ?? null;
         $title = 'KESISWAAN';
         $sub_title = 'Kegiatan P5';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kesiswaan');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function tataTertibSiswa()
     {
@@ -260,7 +349,14 @@ class HomeController extends Controller
         $data = $kesiswaan->tata_tertib_siswa ?? null;
         $title = 'KESISWAAN';
         $sub_title = 'Tata Tertib Siswa';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kesiswaan');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function bpBk()
     {
@@ -270,7 +366,14 @@ class HomeController extends Controller
         $data = $kesiswaan->{'bp-bk'} ?? null;
         $title = 'KESISWAAN';
         $sub_title = 'BP / BK';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Kesiswaan');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function tupoksi()
     {
@@ -280,7 +383,14 @@ class HomeController extends Controller
         $data = $sarana->tupoksi ?? null;
         $title = 'SARANA & PRASARANA';
         $sub_title = 'Tupoksi';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Sarana Prasana');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function ruangKasek()
     {
@@ -290,7 +400,14 @@ class HomeController extends Controller
         $data = $sarana->ruang_kasek ?? null;
         $title = 'SARANA & PRASARANA';
         $sub_title = 'Ruang Kepala Sekolah';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Sarana Prasana');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function ruangGuru()
     {
@@ -300,7 +417,14 @@ class HomeController extends Controller
         $data = $sarana->ruang_guru ?? null;
         $title = 'SARANA & PRASARANA';
         $sub_title = 'Ruang Guru';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Sarana Prasana');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function aula()
     {
@@ -310,7 +434,14 @@ class HomeController extends Controller
         $data = $sarana->aula ?? null;
         $title = 'SARANA & PRASARANA';
         $sub_title = 'Aula';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Sarana Prasana');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function perpustakaan()
     {
@@ -320,7 +451,14 @@ class HomeController extends Controller
         $data = $sarana->perpustakaan ?? null;
         $title = 'SARANA & PRASARANA';
         $sub_title = 'Perpustakaan';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Sarana Prasana');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function tupoksiHumas()
     {
@@ -330,7 +468,14 @@ class HomeController extends Controller
         $data = $humas->tupoksi ?? null;
         $title = 'HUBUNGAN MASYARAKAT';
         $sub_title = 'Tupoksi';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Humas');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function infoHumas()
     {
@@ -340,13 +485,46 @@ class HomeController extends Controller
         $data = $humas->info_humas ?? null;
         $title = 'HUBUNGAN MASYARAKAT';
         $sub_title = 'Info Humas';
-        return view('clients.umum.umum', compact('data', 'title', 'sub_title'));
+
+        $posts = Post::where('is_published', 1)
+            ->whereHas('category', function ($query) {
+                $query->where('name', 'Humas');
+            })
+            ->get();
+
+        return view('clients.umum.umum', compact('data', 'title', 'sub_title', 'posts'));
     }
     public function galeri()
     {
-        $galleries = Gallery::with('category')->paginate(10);
-        // dd($galleries);
-        return view('clients.lainnya.galeri', compact('galleries'));
+        // $galleries = Gallery::with('category')->paginate(10);
+        // return view('clients.lainnya.galeri', compact('galleries'));
+        // Define the folder path in the public directory
+        $folderPath = public_path('storage/galleries'); // Adjust the folder name if needed
+
+        // Check if the folder exists and retrieve all files
+        $files = file_exists($folderPath) ? File::files($folderPath) : [];
+
+        // Create URLs for the images
+        $galleries = collect($files)->map(function ($file) {
+            return [
+                'url' => asset('storage/galleries/' . $file->getFilename()),
+            ];
+        })->reverse();
+
+        // Paginate the result (manually paginating since it's not from a database)
+        $perPage = 15;
+        $currentPage = request()->input('page', 1);
+        $currentPageItems = $galleries->slice(($currentPage - 1) * $perPage, $perPage);
+        $paginatedGalleries = new \Illuminate\Pagination\LengthAwarePaginator(
+            $currentPageItems,
+            $galleries->count(),
+            $perPage,
+            $currentPage,
+            ['path' => request()->url()]
+        );
+        // dd($paginatedGalleries);
+
+        return view('clients.lainnya.galeri', ['galleries' => $paginatedGalleries]);
     }
     public function hubungiKami()
     {
@@ -354,7 +532,8 @@ class HomeController extends Controller
     }
     public function prestasi()
     {
-        return view('clients.lainnya.prestasi');
+        $achievements = Achievement::orderBy('created_at', 'desc')->paginate(10);
+        return view('clients.lainnya.prestasi', compact('achievements'));
     }
 
     public function notfound()

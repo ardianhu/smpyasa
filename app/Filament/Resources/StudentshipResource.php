@@ -19,6 +19,21 @@ class StudentshipResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
+    public static function canCreate(): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
     protected static ?string $navigationLabel = 'Kesiswaan';
 
     protected static ?string $modelLabel = 'Kesiswaan';

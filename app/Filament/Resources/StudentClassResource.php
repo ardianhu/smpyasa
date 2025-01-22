@@ -19,6 +19,21 @@ class StudentClassResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function canCreate(): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
     protected static ?string $navigationLabel = 'Kelas';
 
     protected static ?string $modelLabel = 'Kelas';

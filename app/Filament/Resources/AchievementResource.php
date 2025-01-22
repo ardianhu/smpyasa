@@ -2,13 +2,12 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\GalleryResource\Pages;
-use App\Filament\Resources\GalleryResource\RelationManagers;
-use App\Models\Gallery;
+use App\Filament\Resources\AchievementResource\Pages;
+use App\Filament\Resources\AchievementResource\RelationManagers;
+use App\Models\Achievement;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,11 +18,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class GalleryResource extends Resource
+class AchievementResource extends Resource
 {
-    protected static ?string $model = Gallery::class;
+    protected static ?string $model = Achievement::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-photo';
+    protected static ?string $navigationIcon = 'heroicon-o-trophy';
 
     public static function canCreate(): bool
     {
@@ -40,11 +39,11 @@ class GalleryResource extends Resource
         return auth()->user()->role->name !== 'default';
     }
 
-    protected static ?string $navigationLabel = 'Galeri';
+    protected static ?string $navigationLabel = 'Prestasi';
 
-    protected static ?string $modelLabel = 'Foto';
+    protected static ?string $modelLabel = 'Prestasi';
 
-    protected static ?string $pluralModelLabel = 'Galeri';
+    protected static ?string $pluralModelLabel = 'Prestasi';
 
     protected static ?string $navigationGroup = 'Berita & Postingan';
 
@@ -53,14 +52,14 @@ class GalleryResource extends Resource
         return $form
             ->schema([
                 //
-                TextInput::make('title')
-                    ->label('Judul')
+                TextInput::make('name')
+                    ->label('Nama Prestasi')
                     ->required()
                     ->maxLength(255),
-                Select::make('category_id')
-                    ->label('Kategori')
-                    ->relationship('category', 'name') // Assuming 'name' is the category's display column
-                    ->required(),
+                TextInput::make('description')
+                    ->label('Deskripsi')
+                    ->required()
+                    ->maxLength(255),
                 Repeater::make('photos')
                     ->label('Photos')
                     ->schema([
@@ -81,8 +80,8 @@ class GalleryResource extends Resource
         return $table
             ->columns([
                 //
-                TextColumn::make('title')->searchable()->sortable(),
-                TextColumn::make('category.name')->label('Category')->sortable(),
+                TextColumn::make('name')->label('Nama')->searchable()->sortable(),
+                TextColumn::make('description')->label('Kategori')->sortable(),
                 ImageColumn::make('photos.0') // Display the first photo as a preview
                     ->label('Preview'),
             ])
@@ -109,9 +108,9 @@ class GalleryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListGalleries::route('/'),
-            'create' => Pages\CreateGallery::route('/create'),
-            'edit' => Pages\EditGallery::route('/{record}/edit'),
+            'index' => Pages\ListAchievements::route('/'),
+            'create' => Pages\CreateAchievement::route('/create'),
+            'edit' => Pages\EditAchievement::route('/{record}/edit'),
         ];
     }
 }

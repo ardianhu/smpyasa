@@ -10,9 +10,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
-            rel="stylesheet">
+        rel="stylesheet">
+    @php
+    $isProduction = app()->environment('production');
+    $manifestPath = $isProduction ? '../public_html/build/manifest.json' : public_path('build/manifest.json');
+    @endphp
 
-        @vite(['resources/css/app.css'])
+    @if ($isProduction && file_exists($manifestPath))
+    @php
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+    @endphp
+    <link rel="stylesheet" href="{{ config('app.url') }}/build/{{ $manifest['resources/css/app.css']['file'] }}">
+    @else
+    @viteReactRefresh
+    @vite(['resources/css/app.css'])
+    @endif
 
     <script src="/assets/js/perfect-scrollbar.min.js"></script>
     <script defer src="/assets/js/popper.min.js"></script>
@@ -94,6 +106,6 @@
     <script defer src="/assets/js/alpine-focus.min.js"></script>
     <script defer src="/assets/js/alpine.min.js"></script>
     <script src="/assets/js/custom.js"></script>
-    </body>
+</body>
 
-    </html>
+</html>

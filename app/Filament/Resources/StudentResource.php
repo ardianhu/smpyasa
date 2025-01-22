@@ -26,6 +26,21 @@ class StudentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function canCreate(): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
     protected static ?string $navigationLabel = 'Siswa';
 
     protected static ?string $modelLabel = 'Peserta Didik';
@@ -117,6 +132,9 @@ class StudentResource extends Resource
                     ])
                     ->requiresConfirmation()
                     ->label('Import Students')
+                    ->authorize(function () {
+                        return auth()->user()->role->name !== 'default';
+                    })
 
             ])
             ->bulkActions([
@@ -155,7 +173,10 @@ class StudentResource extends Resource
                         }
                     })
                     ->requiresConfirmation()
-                    ->label('Promote All Students'),
+                    ->label('Promote All Students')
+                    ->authorize(function () {
+                        return auth()->user()->role->name !== 'default';
+                    }),
             ]);
     }
 

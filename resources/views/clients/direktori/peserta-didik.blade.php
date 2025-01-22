@@ -24,7 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if(count($students) > 0)
+                                @if($students != null && count($students) > 0)
                                 @foreach ($students as $student)
                                 <tr>
                                     <td class="whitespace-nowrap">{{ $student->name }}</td>
@@ -44,9 +44,13 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                                @elseif($students != null)
+                                <tr>
+                                    <td colspan="7" class="text-center text-xl text-gray-700" style="text-align: center;">Tidak ada data.</td>
+                                </tr>
                                 @else
                                 <tr>
-                                    <td colspan="4" class="text-center text-xl text-gray-700">Tidak ada data.</td>
+                                    <td colspan="7" class="text-center text-xl text-gray-700" style="text-align: center;">Pilih filter terlebih dahulu.</td>
                                 </tr>
                                 @endif
                             </tbody>
@@ -54,9 +58,6 @@
                     </div>
                 </div>
                 <div class="col-span-4 lg:col-span-1">
-                    <div class="flex flex-col rounded-md border border-[#e0e6ed] dark:border-[#1b2e4b]">
-                        <a href="/peserta-didik" class="border-b border-[#e0e6ed] dark:border-[#1b2e4b] px-4 py-2.5 hover:bg-[#eee] dark:hover:bg-[#eee]/10">Tampilkan semua</a>
-                    </div>
                     <div class="mb-4">
                         <div class="text-xl m-2">Kelas</div>
                         <div class="flex flex-col rounded-md border border-[#e0e6ed] dark:border-[#1b2e4b]">

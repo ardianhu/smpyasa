@@ -70,11 +70,15 @@
                 <div class="flex-1 lg:flex lg:flex-col lg:justify-center text-justify mx-auto lg:w-2/3">
                     <div class="text-3xl font-bold mb-4 border-b-2 border-white pb-2">Sambutan Kepala Sekolah SMP YAS'A</div>
                     <div class="text-lg italic mb-4">Bismillaahirohmaannirrohiim. Assalaamualaikum Warahmatullaahi Wabarakaatuh.</div>
+                    @if ($info && $info->sambutan_kasek)
+                    <div class="text-lg leading-relaxed">{{ $info->sambutan_kasek }}</div>
+                    @else
                     <div class="text-lg leading-relaxed space-y-4">
-                        <p>Alhamdulillaahi Robbil 'Aalamiin, kami panjatkan Puji dan Syukur kehadlirat Allah SWT, bahwasannya dengan hidayah, rahmat dan karunia-Nya lah akhirnya Website Yayasan Pendidikan Islam Abdullah Kota Sumenep ini dengan alamat <strong class="text-yellow-300">yasasumenep.sch.id</strong> ini dapat kami terbit. Kami mengucapkan selamat datang di Website kami.</p>
+                        <p>Alhamdulillaahi Robbil 'Aalamiin, kami panjatkan Puji dan Syukur kehadlirat Allah SWT, bahwasannya dengan hidayah, rahmat dan karunia-Nya lah akhirnya Website Yayasan Pendidikan Islam Abdullah Kota Sumenep ini dengan alamat <strong class="text-yellow-300">smpyasa.sch.id</strong> ini dapat kami terbit. Kami mengucapkan selamat datang di Website kami.</p>
                         <p>Kami berharap Website ini dapat dijadikan wahana interaksi yang positif baik antar civitas akademika maupun masyarakat pada umumnya sehingga dapat menjalin silaturahmi yang erat dan ukhuwah yang di antara kita di segala unsur. Mari kita bekerja dan berkarya dengan mengharap ridho Sang Maha Kuasa dan keikhlasan yang tulus di jiwa demi generasi penerus bangsa yang lebih baik dan maju.</p>
                         <p>Terima kasih atas kebersamaan semuanya dan mohon maaf atas segala salah dan khilaf serta kekurangan kami, semoga Allah 'Azza Wa Jalla menyertai doa kita semua dan mengabulkan cita-cita dan harapan serta niat baik kita semua …… Aamiin.</p>
                     </div>
+                    @endif
                     <div class="text-lg italic mt-4">Wassalaamu'alaikum Wr.Wb.</div>
                 </div>
             </div>
@@ -134,7 +138,7 @@
                                                             <li>'), 20, '...') !!}
                                     </p>
                                     <div class="flex items-center justify-between mt-4">
-                                        <div class="flex items-center">
+                                        <!-- <div class="flex items-center">
                                             <div class="w-8 h-8 rounded-full overflow-hidden mr-2">
                                                 @if ($post->user->avatar)
                                                 <img src="{{ asset('storage/' . $post->user->avatar) }}" alt="{{ $post->user->name }}" class="w-full h-full object-cover">
@@ -145,7 +149,7 @@
                                                 @endif
                                             </div>
                                             <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ $post->user->name }}</span>
-                                        </div>
+                                        </div> -->
                                         <div class="flex items-center text-gray-500 dark:text-gray-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

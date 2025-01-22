@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Info;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
@@ -30,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         // Share the authenticated user data with all views
         View::composer('*', function ($view) {
             $view->with('authUser', Auth::user());
+            $view->with('info', Info::latest()->first());
         });
 
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {

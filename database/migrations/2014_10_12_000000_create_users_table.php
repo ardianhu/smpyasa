@@ -23,7 +23,12 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->integer('level');
             $table->string('position');
-            $table->unsignedBigInteger('role_id')->default(1);
+            $table->boolean('is_teacher');
+            $table->boolean('is_on_comite');
+            $table->json('study')->nullable();
+            $table->text('comite_position')->nullable();
+            $table->integer('comite_level')->nullable();
+            $table->unsignedBigInteger('role_id')->default(4);
             $table->rememberToken();
             $table->timestamps();
         });

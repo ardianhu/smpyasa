@@ -7,8 +7,6 @@
         <!-- Wrap the slider in a full-width container -->
         <x-header-banner :background-image="'/assets/images/header.jpg'" :title="'STRUKTUR ORGANISASI'" />
         <div class="container">
-        </div>
-        <div class="container">
             @php
             $groupedUsers = $users->where('level', '>', 0)->groupBy('level')->sortKeys();
             @endphp

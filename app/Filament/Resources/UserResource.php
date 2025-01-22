@@ -23,7 +23,7 @@ class UserResource extends Resource
     // prevent author to access this resourcess
     public static function canViewAny(): bool
     {
-        return auth()->user()->role->name != "author";
+        return auth()->user()->role->name !== "author" && auth()->user()->role->name !== "default";
     }
 
     public static function form(Form $form): Form
@@ -86,7 +86,46 @@ class UserResource extends Resource
                                     ->placeholder('Level')
                                     ->numeric()
                                     ->required(),
+                            ]),
+                        Forms\Components\Checkbox::make('is_teacher')
+                            ->label('Guru')
+                            ->reactive(),
+
+                        Forms\Components\Checkbox::make('is_on_comite')
+                            ->label('Jajaran Komite')
+                            ->reactive(),
+
+                        Forms\Components\Fieldset::make('Detail Guru')
+                            ->schema([
+                                Forms\Components\Repeater::make('study')
+                                    ->label('Mapel')
+                                    ->schema([
+                                        Forms\Components\TextInput::make('subject')
+                                            ->label('Mapel')
+                                            ->required(),
+                                    ])
+                                    ->nullable()
+                                    ->dehydrated(fn($state, $get) => $get('is_teacher') === true)
+                                    ->hidden(fn($get) => $get('is_teacher') === false),
                             ])
+                            ->columns(1),
+
+                        Forms\Components\Fieldset::make('Detail Komite')
+                            ->schema([
+                                Forms\Components\TextInput::make('comite_position')
+                                    ->label('Posisi Komite')
+                                    ->nullable()
+                                    ->dehydrated(fn($state, $get) => $get('is_on_comite') === true)
+                                    ->hidden(fn($get) => $get('is_on_comite') === false),
+
+                                Forms\Components\TextInput::make('comite_level')
+                                    ->label('Level Komite')
+                                    ->numeric()
+                                    ->nullable()
+                                    ->dehydrated(fn($state, $get) => $get('is_on_comite') === true)
+                                    ->hidden(fn($get) => $get('is_on_comite') === false),
+                            ])
+                            ->columns(1),
                     ])
             ]);
     }

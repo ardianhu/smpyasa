@@ -33,7 +33,7 @@
                                             </div>
                                             <div class="col-span-2 lg:col-span-1">
                                                 <div class="mb-2 text-2xl font-bold">{{ $post->title }}</div>
-                                                <div class="mb-4">Diupload oleh: {{ $post->user->name }}</div>
+                                                <!-- <div class="mb-4">Diupload oleh: {{ $post->user->name }}</div> -->
                                                 <div class="text-justify mb-4">{!! \Illuminate\Support\Str::words($post->description, 50, '...') !!}</div>
                                                 <div class="flex items-center justify-start">
                                                     <a href="/baca/{{ $post->id }}" class="btn btn-success">Baca</a>

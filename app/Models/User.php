@@ -23,7 +23,12 @@ class User extends Authenticatable
         'password',
         'avatar',
         'level',
-        'position'
+        'position',
+        'is_teacher',
+        'is_on_comite',
+        'study',
+        'comite_position',
+        'comite_level'
     ];
 
     /**
@@ -43,6 +48,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'study' => 'array',
     ];
     public function role()
     {

@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
         Role::create([
             'name' => 'author',
         ]);
+        Role::create([
+            'name' => 'default',
+        ]);
         User::create([
             'name' => 'Super Admin',
             'email' => 'admin@smpyasa.com',
@@ -38,9 +41,23 @@ class DatabaseSeeder extends Seeder
             'role_id' => 2,
             'position' => 'Maintainer',
             'level' => 0,
+            'is_teacher' => false,
+            'is_on_comite' => false,
         ]);
         Category::create([
             'name' => 'Umum',
+        ]);
+        Category::create([
+            'name' => 'Kurikulum',
+        ]);
+        Category::create([
+            'name' => 'Kesiswaan',
+        ]);
+        Category::create([
+            'name' => 'Sarana Prasarana',
+        ]);
+        Category::create([
+            'name' => 'Humas',
         ]);
     }
 }

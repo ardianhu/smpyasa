@@ -19,6 +19,21 @@ class InfrastructureResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
 
+    public static function canCreate(): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canEdit($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
+    public static function canDelete($record): bool
+    {
+        return auth()->user()->role->name !== 'default';
+    }
+
     protected static ?string $navigationLabel = 'Sarana Prasarana';
 
     protected static ?string $modelLabel = 'Sarana Prasarana';
